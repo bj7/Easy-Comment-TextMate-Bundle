@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env python
+import re
+import os
+import sys
+
+#get the line from the screen
+line = os.environ['TM_CURRENT_LINE']
+#match the body of the block comment ( * )
+body = re.match('^\s*\*.*', line)
+#match the beginning of a block comment
+beginning = re.match('^\s*\/\**', line)
+#match end of block comment
+endComment = re.match('^\s*\*\/.*', line)
+
+#test if it is a block comement
+if ((body is not None) or (beginning is not None)) and (endComment is None):
+  #determine number of spaces at beginning of line
+  spaces = len(line) - len(line.lstrip())
+
+  sys.stdout.write('\n')
+  for i in range(spaces):
+    sys.stdout.write(' ')
+    
+  sys.stdout.write("*")
+else: #if not simply jump to the new line to and keep indentation
+  spaces = len(line) - len(line.lstrip())
+  sys.stdout.write('\n')
+  for i in range(spaces):
+    sys.stdout.write(' ')</string>
+	<key>input</key>
+	<string>line</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>$</string>
+	<key>name</key>
+	<string>Autocomplete asterisk </string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>afterInput</string>
+	<key>uuid</key>
+	<string>F5CCD3C3-FE52-400A-82CD-824A084ED9B2</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>

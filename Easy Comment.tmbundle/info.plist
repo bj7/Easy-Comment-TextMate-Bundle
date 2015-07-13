@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>contactEmailRot13</key>
+	<string>wworeavgg@tznvy.pbz</string>
+	<key>contactName</key>
+	<string>Joshua Bernitt</string>
+	<key>description</key>
+	<string>This bundle handles comment autocompletion. Block comments are started with 
+either /** -&gt;(tab) or /* -&gt;(tab). Single line comments are also supported. This bundle places 
+a new asterisk after every line return in block comments and a new single line comment after
+a line return.</string>
+	<key>name</key>
+	<string>Easy Comment</string>
+	<key>uuid</key>
+	<string>14E8B52A-3506-4304-AB09-23246E208B22</string>
+</dict>
+</plist>
