@@ -14,21 +14,25 @@ import sys
 line = os.environ['TM_CURRENT_LINE']
 #match the body of the block comment ( * )
 body = re.match('^\s*\*.*', line)
+body_single = re.match('^\s*\/\/.*', line)
 #match the beginning of a block comment
 beginning = re.match('^\s*\/\**', line)
 #match end of block comment
 endComment = re.match('^\s*\*\/.*', line)
 
 #test if it is a block comement
-if ((body is not None) or (beginning is not None)) and (endComment is None):
+if ((body is not None) or (body_single is not None) or (beginning is not None)) and (endComment is None):
   #determine number of spaces at beginning of line
   spaces = len(line) - len(line.lstrip())
 
   sys.stdout.write('\n')
   for i in range(spaces):
     sys.stdout.write(' ')
-    
-  sys.stdout.write("*")
+  
+  if body_single is not None:
+      sys.stdout.write("//")
+  else:
+    sys.stdout.write("*")
 else: #if not simply jump to the new line to and keep indentation
   spaces = len(line) - len(line.lstrip())
   sys.stdout.write('\n')
@@ -41,7 +45,7 @@ else: #if not simply jump to the new line to and keep indentation
 	<key>keyEquivalent</key>
 	<string>$</string>
 	<key>name</key>
-	<string>Autocomplete asterisk </string>
+	<string>Autocomplete comment </string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
